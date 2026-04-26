@@ -70,7 +70,7 @@ export const Hero = () => {
           animate="visible"
           variants={shouldReduceMotion ? noAnimation : headlineVariants}
         >
-          Processes that work for you
+          Processes working for you!
         </motion.h1>
         <div className="flex flex-col sm:flex-row justify-center gap-4">
           <a
