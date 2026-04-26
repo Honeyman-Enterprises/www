@@ -1,13 +1,15 @@
 name: Deploy to Production (S3 + CloudFront)
 
+# Use `push` (not `pull_request: closed`) so the run executes in the context
+# of the destination branch (`refs/heads/main`), not the synthetic merge ref
+# (`refs/pull/N/merge`). The Environment's branch-protection rule restricts
+# deploys to `main`, and only the `push` context satisfies it.
 on:
-  pull_request:
-    types: [closed]
+  push:
     branches: [main]
 
 jobs:
   deploy:
-    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
 
     # Bind to the GitHub `production` environment so only its secrets/vars
