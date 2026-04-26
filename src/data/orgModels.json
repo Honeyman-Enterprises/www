@@ -1,0 +1,47 @@
+[
+  {
+    "id": "hierarchical",
+    "name": "Hierarchical",
+    "description": "Traditional top-down structure with clear chain of command and defined reporting relationships.",
+    "mainBenefit": "Clear authority and decision-making pathways with well-defined roles and responsibilities.",
+    "mainWeakness": "Slow decision-making and limited cross-functional collaboration; can stifle innovation and agility.",
+    "bestFor": "Established organizations with stable operations requiring clear accountability and standardized processes.",
+    "icon": "pyramid"
+  },
+  {
+    "id": "divisional",
+    "name": "Divisional",
+    "description": "Semi-autonomous units organized by product, market, or geography, each with dedicated resources.",
+    "mainBenefit": "Focused accountability and market responsiveness with dedicated resources per division.",
+    "mainWeakness": "Resource duplication across divisions and potential silos that limit knowledge sharing.",
+    "bestFor": "Multi-product companies or organizations serving distinct markets requiring localized decision-making.",
+    "icon": "blocks"
+  },
+  {
+    "id": "flat",
+    "name": "Flat",
+    "description": "Minimal hierarchy with few or no middle management layers, emphasizing autonomy and collaboration.",
+    "mainBenefit": "Fast decision-making, high autonomy, and direct communication across all levels.",
+    "mainWeakness": "Unclear accountability and difficult to scale beyond small teams; potential for role confusion.",
+    "bestFor": "Startups and small teams prioritizing speed, innovation, and employee empowerment.",
+    "icon": "minus"
+  },
+  {
+    "id": "matrix",
+    "name": "Matrix",
+    "description": "Dual reporting structure where employees report to both functional managers and project/product leaders.",
+    "mainBenefit": "Flexible resource allocation and strong cross-functional collaboration on complex initiatives.",
+    "mainWeakness": "Conflicting priorities between managers and increased complexity in decision-making.",
+    "bestFor": "Project-driven organizations requiring deep expertise and cross-functional coordination.",
+    "icon": "grid"
+  },
+  {
+    "id": "network-flatarchic",
+    "name": "Network/Flatarchic",
+    "description": "Flexible ecosystem combining flat team autonomy with strategic coordination through minimal structure.",
+    "mainBenefit": "Maximum agility and adaptability with distributed decision-making and collaborative problem-solving.",
+    "mainWeakness": "Requires high trust, strong culture, and sophisticated communication systems to function effectively.",
+    "bestFor": "Modern organizations embracing remote work, rapid innovation, and autonomous team structures.",
+    "icon": "share2"
+  }
+]

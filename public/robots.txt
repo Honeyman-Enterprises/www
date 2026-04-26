@@ -1,0 +1,23 @@
+# Allow all search engines
+User-agent: *
+Allow: /
+
+# AI Crawlers - Allow access to markdown pages
+Allow: /pages/*.md
+
+# Disallow specific paths (add as needed)
+# Disallow: /admin/
+# Disallow: /private/
+
+# Sitemap location
+Sitemap: https://honeymanenterprises.com/sitemap.xml
+
+# AI-crawlable content pages
+# /pages/home.md - Homepage content
+# /pages/about.md - About section
+# /pages/method.md - The Honeyman Method
+# /pages/services.md - Services offered
+# /pages/contact.md - Contact information
+
+# Crawl-delay (optional, helps prevent server overload)
+Crawl-delay: 1

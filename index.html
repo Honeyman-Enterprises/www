@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Honeyman Enterprises – Strategic Systems & AI Consulting</title>
+    <meta name="description" content="Helping growth-minded organizations scale through systems, automation, and intelligent innovation." />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Three.js is now loaded via NPM in the React app -->
+    <!-- Custom ForestBackground component replaces Vanta.js -->
+
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=VITE_GA_MEASUREMENT_ID"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      // GA4 Measurement ID will be replaced during build process
+      if ('VITE_GA_MEASUREMENT_ID' !== 'VITE_GA_MEASUREMENT_ID' && 'VITE_GA_MEASUREMENT_ID'.startsWith('G-')) {
+        gtag('config', 'VITE_GA_MEASUREMENT_ID', {
+          send_page_view: false // Disable automatic page views, we'll handle them with React Router
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G8P0NHWXNG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-G8P0NHWXNG');
+    </script>
+  </body>
+</html>

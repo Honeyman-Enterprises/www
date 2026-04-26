@@ -1,0 +1,23 @@
+[
+  {
+    "id": "prime-division",
+    "name": "Prime Division",
+    "description": "Branding, design systems, and visual storytelling supporting Honeyman's brand strategy and presentation design.",
+    "logo": "/assets/logos/prime-division.svg",
+    "website": "https://primedivision.com"
+  },
+  {
+    "id": "yalantis",
+    "name": "Yalantis",
+    "description": "Full-stack web and app engineering to build and scale products architected for Honeyman clients.",
+    "logo": "/assets/logos/yalantis.svg",
+    "website": "https://yalantis.com"
+  },
+  {
+    "id": "freeflow",
+    "name": "FreeFlow",
+    "description": "Execution, engineering, and integrations that power Honeyman's strategic vision.",
+    "logo": "/assets/logos/freeflow.svg",
+    "website": "https://freeflow.io"
+  }
+]

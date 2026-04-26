@@ -1,0 +1,46 @@
+[
+  {
+    "id": "strategy-operations",
+    "title": "Strategy & Operations (BD Focus)",
+    "summary": "Structure growth through data-backed business development systems and operational alignment.",
+    "outcomes": [
+      "Go-to-Market architecture",
+      "Pipeline strategy",
+      "Performance dashboards"
+    ],
+    "icon": "target"
+  },
+  {
+    "id": "digital-transformation",
+    "title": "Digital Transformation",
+    "summary": "Modernize legacy operations with scalable, cloud-ready foundations and compliance frameworks.",
+    "outcomes": [
+      "System audit",
+      "Workflow optimization"
+    ],
+    "icon": "cloud"
+  },
+  {
+    "id": "automation",
+    "title": "Automation",
+    "summary": "Eliminate repetitive tasks and interconnect data sources for measurable productivity gains.",
+    "outcomes": [
+      "Workflow automation",
+      "CRM triggers",
+      "Cross-platform sync",
+      "Analytics integration"
+    ],
+    "icon": "zap"
+  },
+  {
+    "id": "ai-consulting",
+    "title": "AI Consulting & Training",
+    "summary": "Integrate and teach the practical use of AI—from prompt strategy to full agentic systems.",
+    "outcomes": [
+      "LLM integration",
+      "Training (ChatGPT, Claude, Claude-Code)",
+      "Governance & safety"
+    ],
+    "icon": "brain"
+  }
+]

@@ -1,0 +1,60 @@
+[
+  {
+    "id": "business-development-crm",
+    "title": "Business Development & CRM",
+    "description": "Integrated systems for pipeline management, lead nurturing, and automated outreach that drive predictable growth.",
+    "tools": [
+      "HubSpot",
+      "LinkedIn Automations",
+      "Calendly"
+    ],
+    "icon": "users"
+  },
+  {
+    "id": "process-workflow-automation",
+    "title": "Process & Workflow Automation",
+    "description": "Eliminate manual tasks and connect disparate systems with intelligent automation workflows that save time and reduce errors.",
+    "tools": [
+      "Zapier",
+      "N8N",
+      "Make",
+      "Retell"
+    ],
+    "icon": "workflow"
+  },
+  {
+    "id": "organizational-design",
+    "title": "Organizational Design",
+    "description": "Structure your team for clarity, accountability, and measurable progress using proven frameworks for alignment and execution.",
+    "tools": [
+      "EOS \"Right Seat, Right Role\"",
+      "OKRs"
+    ],
+    "icon": "network"
+  },
+  {
+    "id": "business-setup-enablement",
+    "title": "Business Setup & Enablement",
+    "description": "Complete foundational infrastructure from entity formation to financial systems, delivered through trusted partner implementations.",
+    "tools": [
+      "LegalZoom*",
+      "Mercury*",
+      "Helcim*",
+      "Xero*",
+      "DocuSign*",
+      "Monday.com*",
+      "Figma*"
+    ],
+    "icon": "briefcase"
+  },
+  {
+    "id": "communication-presentation",
+    "title": "Communication & Presentation Mastery",
+    "description": "Internal curriculum and workshops designed to elevate executive presence, storytelling, and persuasive communication skills.",
+    "tools": [
+      "Internal Curriculum",
+      "Public Speaking & Communication Workshops"
+    ],
+    "icon": "presentation"
+  }
+]

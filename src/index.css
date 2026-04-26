@@ -1,0 +1,201 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Roboto+Condensed:wght@300;400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px; /* Offset for fixed header */
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  body {
+    @apply font-body leading-normal text-navy bg-white;
+    font-size: 1.125rem; /* 18px mobile */
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    width: 100%;
+    min-width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    body {
+      font-size: 1.25rem; /* 20px desktop */
+    }
+  }
+
+  #root {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-width: 100%;
+    overflow-x: hidden;
+  }
+
+  main {
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  h1 {
+    @apply font-heading leading-tight;
+    font-size: 3.75rem; /* 60px mobile */
+    letter-spacing: -0.02em;
+  }
+
+  @media (min-width: 768px) {
+    h1 {
+      font-size: 4.5rem; /* 72px desktop */
+    }
+  }
+
+  h2 {
+    @apply font-heading leading-tight;
+    font-size: 2.125rem; /* 34px mobile */
+    letter-spacing: -0.01em;
+  }
+
+  @media (min-width: 768px) {
+    h2 {
+      font-size: 3rem; /* 48px desktop */
+    }
+  }
+
+  h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+
+  /* Interactive link styles with underline animation */
+  a {
+    @apply relative transition-colors duration-150;
+  }
+
+  a:hover {
+    @apply text-gold;
+  }
+
+  /* Underline animation from left */
+  a.link-underline {
+    @apply after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-0 after:bg-gold after:transition-all after:duration-150;
+  }
+
+  a.link-underline:hover::after {
+    @apply after:w-full;
+  }
+
+  /* Text selection styling with brand colors */
+  ::selection {
+    background-color: rgba(190, 138, 47, 0.3); /* Gold with opacity */
+    color: #0B2442; /* Navy */
+  }
+
+  ::-moz-selection {
+    background-color: rgba(190, 138, 47, 0.3);
+    color: #0B2442;
+  }
+}
+
+/* Reduced Motion Support for Accessibility */
+@layer utilities {
+  .reduced-motion-safe {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  /* Apply reduced motion when user prefers it */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* HubSpot Form Custom Styling */
+.hubspot-form-wrapper .hs-form {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1.5rem !important;
+}
+
+.hubspot-form-wrapper .hs-form-field {
+  margin-bottom: 0 !important;
+}
+
+.hubspot-form-wrapper .hs-form-field > label {
+  display: none !important;
+}
+
+.hubspot-form-wrapper .hs-input {
+  width: 100% !important;
+  padding: 0.75rem 1rem !important;
+  border-radius: 0.5rem !important;
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  color: white !important;
+  font-size: 1rem !important;
+  transition: all 0.3s ease !important;
+}
+
+.hubspot-form-wrapper .hs-input::placeholder {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.hubspot-form-wrapper .hs-input:focus {
+  outline: none !important;
+  border-color: #BE8A2F !important;
+  box-shadow: 0 0 0 2px rgba(190, 138, 47, 0.2) !important;
+}
+
+.hubspot-form-wrapper textarea.hs-input {
+  min-height: 120px !important;
+  resize: vertical !important;
+}
+
+.hubspot-form-wrapper .hs-button {
+  width: 100% !important;
+  background-color: #BE8A2F !important;
+  color: white !important;
+  font-weight: 700 !important;
+  padding: 0.75rem 1.5rem !important;
+  border-radius: 0.5rem !important;
+  border: none !important;
+  cursor: pointer !important;
+  transition: background-color 0.3s ease !important;
+  font-size: 1rem !important;
+}
+
+.hubspot-form-wrapper .hs-button:hover {
+  background-color: #A67A29 !important;
+}
+
+.hubspot-form-wrapper .hs-error-msgs {
+  list-style: none !important;
+  padding: 0 !important;
+  margin-top: 0.5rem !important;
+}
+
+.hubspot-form-wrapper .hs-error-msg {
+  color: #FCA5A5 !important;
+  font-size: 0.875rem !important;
+}
+
+.hubspot-form-wrapper .submitted-message {
+  background-color: rgba(42, 167, 161, 0.2) !important;
+  border: 1px solid #2AA7A1 !important;
+  border-radius: 0.5rem !important;
+  padding: 1rem !important;
+  color: #2AA7A1 !important;
+  font-weight: 600 !important;
+  text-align: center !important;
+}
