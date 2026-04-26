@@ -1,0 +1,62 @@
+version: '3.8'
+
+services:
+  # Development service with test-first approach
+  dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: honeyman-dev-spa
+    ports:
+      - "0.0.0.0:5182:5181"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - VITE_HOST=0.0.0.0
+    command: sh -c "npm install && npm run dev -- --host 0.0.0.0"
+    restart: on-failure
+    stdin_open: true
+    tty: true
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5181"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Continuous test watch service
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: honeyman-test-spa
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=test
+    command: sh -c "npm install && npm run test:watch"
+    restart: always
+    stdin_open: true
+    tty: true
+    profiles:
+      - test
+
+  # One-time test runner service
+  test-ci:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: honeyman-test-spa-ci
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=test
+    command: sh -c "npm install && npm run test:ci"
+    stdin_open: true
+    tty: true
+    profiles:
+      - ci

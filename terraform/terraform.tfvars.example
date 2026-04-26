@@ -1,0 +1,25 @@
+# Honeyman Enterprises - Terraform Variables
+# Copy this file to terraform.tfvars and fill in your values
+
+# Domain Configuration
+domain_name    = "honeymanenterprises.com"
+domain_www     = "www.honeymanenterprises.com"
+domain_staging = "staging.honeymanenterprises.com"
+
+# ACM Certificate ARN (must be in us-east-1)
+# Get this from AWS Certificate Manager console
+acm_certificate_arn = "arn:aws:acm:us-east-1:XXXXXXXXXXXX:certificate/XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
+
+# AWS Region
+aws_region = "us-east-1"
+
+# Build directory (where npm build outputs)
+build_dir = "dist"
+
+# Staging Access Control
+# Set to your IP address to restrict staging access
+# Get your IP: curl -s https://checkip.amazonaws.com
+staging_allow_ip = "YOUR.IP.HERE"
+
+# Logging (set to true if you want CloudFront access logs)
+enable_logging = false
