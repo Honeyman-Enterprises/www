@@ -30,3 +30,9 @@ lerna-debug.log*
 crash.log
 terraform.tfvars
 *.tfplan
+
+# Local env files (never commit)
+.env
+.env.*
+!.env.example
+terraform/.env
