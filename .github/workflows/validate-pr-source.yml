@@ -1,0 +1,52 @@
+name: Validate PR source branch
+
+# Enforces the repo's promotion model:
+#   feature/*  →  dev
+#   dev        →  staging
+#   staging    →  main
+#
+# Anything else gets a hard ❌ on the PR. Combined with a required-status-check
+# rule on `main` and `staging`, this makes the rule unmergeable, not advisory.
+
+on:
+  pull_request:
+    types: [opened, edited, reopened, synchronize]
+    branches: [main, staging]
+
+jobs:
+  validate-source:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check PR source branch
+        env:
+          BASE: ${{ github.base_ref }}
+          HEAD: ${{ github.head_ref }}
+        run: |
+          set -e
+          echo "PR: ${HEAD} → ${BASE}"
+
+          case "${BASE}" in
+            main)
+              expected=staging
+              ;;
+            staging)
+              expected=dev
+              ;;
+            *)
+              echo "Workflow not applicable to base=${BASE}; skipping."
+              exit 0
+              ;;
+          esac
+
+          if [ "${HEAD}" = "${expected}" ]; then
+            echo "✅ ${HEAD} → ${BASE} is allowed."
+            exit 0
+          fi
+
+          echo "::error::Disallowed PR source. PRs into '${BASE}' must come from '${expected}', got '${HEAD}'."
+          echo ""
+          echo "Promotion model:"
+          echo "  feature/*  →  dev"
+          echo "  dev        →  staging"
+          echo "  staging    →  main"
+          exit 1
