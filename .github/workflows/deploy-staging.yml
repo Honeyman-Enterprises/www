@@ -1,0 +1,89 @@
+name: Deploy to Staging (S3 + CloudFront)
+
+# Use `push` (not `pull_request: closed`) so the run executes in the context
+# of the destination branch (`refs/heads/staging`), not the synthetic merge ref
+# (`refs/pull/N/merge`). The Environment's branch-protection rule restricts
+# deploys to `staging`, and only the `push` context satisfies it.
+on:
+  push:
+    branches: [staging]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    # Bind to the GitHub `staging` environment so only its secrets/vars
+    # are exposed during this run. Configure branch protection in the env
+    # to only allow deployments from `staging`.
+    environment:
+      name: staging
+      url: https://staging.honeymanenterprises.com
+
+    permissions:
+      id-token: write   # Required for OIDC auth with AWS
+      contents: read
+ 
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+ 
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          # role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: ${{ vars.AWS_REGION }}
+          # Alternative: static keys (less secure, but simpler)
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+ 
+      # ── Build step (uncomment / adapt to your stack) ──────────────
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Build
+        run: npm run build
+ 
+      # ── Deploy to S3 ─────────────────────────────────────────────
+      - name: Sync to S3
+        run: |
+          aws s3 sync ./dist s3://${{ vars.S3_BUCKET_NAME }} \
+            --delete \
+            --cache-control "public, max-age=31536000, immutable" \
+            --exclude "index.html" \
+            --exclude "sw.js"
+ 
+      - name: Upload HTML with no-cache headers
+        run: |
+          aws s3 cp ./dist/index.html s3://${{ vars.S3_BUCKET_NAME }}/index.html \
+            --cache-control "no-cache, no-store, must-revalidate" \
+            --content-type "text/html"
+ 
+      # ── Invalidate CloudFront ────────────────────────────────────
+      - name: Get CloudFront distribution ID
+        id: cf
+        run: |
+          DIST_ID=$(aws cloudfront list-distributions \
+            --query "DistributionList.Items[?contains(Aliases.Items, 'staging.honeymanenterprises.com')].Id | [0]" \
+            --output text)
+ 
+          if [ "$DIST_ID" = "None" ] || [ -z "$DIST_ID" ]; then
+            echo "::error::No CloudFront distribution found for staging.honeymanenterprises.com"
+            exit 1
+          fi
+ 
+          echo "distribution_id=$DIST_ID" >> "$GITHUB_OUTPUT"
+ 
+      - name: Invalidate CloudFront cache
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id ${{ steps.cf.outputs.distribution_id }} \
+            --paths "/*"
+ 
+      - name: Summary
+        run: |
+          echo "### 🚀 Deployed to staging" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **S3 bucket:** \`${{ vars.S3_BUCKET_NAME }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "- **CloudFront:** \`${{ steps.cf.outputs.distribution_id }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "- **URL:** https://staging.honeymanenterprises.com" >> $GITHUB_STEP_SUMMARY
+          echo "- **Triggered by:** PR #${{ github.event.pull_request.number }}" >> $GITHUB_STEP_SUMMARY
