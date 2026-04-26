@@ -52,7 +52,7 @@ export interface UseInViewReturn<T extends Element = HTMLDivElement> {
   /**
    * Ref to attach to the element being observed
    */
-  ref: React.RefObject<T>;
+  ref: React.RefObject<T | null>;
 
   /**
    * Whether the element is currently in view
