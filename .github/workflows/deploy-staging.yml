@@ -9,7 +9,14 @@ jobs:
   deploy:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
- 
+
+    # Bind to the GitHub `staging` environment so only its secrets/vars
+    # are exposed during this run. Configure branch protection in the env
+    # to only allow deployments from `staging`.
+    environment:
+      name: staging
+      url: https://staging.honeymanenterprises.com
+
     permissions:
       id-token: write   # Required for OIDC auth with AWS
       contents: read
